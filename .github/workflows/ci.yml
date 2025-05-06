@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - test
 
 jobs:
   check-pr-label:
@@ -32,6 +33,8 @@ jobs:
               core.setFailed("No pull request found for this commit.");
             } else {
               const pr = prs.data[0];
+              console.log(pr);
+              console.log(prs);
               core.setOutput("pr_number", pr.number);
             }
 
@@ -48,6 +51,7 @@ jobs:
             });
 
             const approved = labels.data.some(label => label.name === "table-approve");
+            console.log("table-approve", approved)
             core.setOutput("table-approve", approved);
 
       - name: Check if PR has table-approve label
