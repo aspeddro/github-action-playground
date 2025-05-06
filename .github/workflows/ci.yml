@@ -68,9 +68,13 @@ jobs:
               pull_number: pr_number
             });
 
-            const fileNames = files.data.map(f => f.filename);
+            const fileNames = files.data
+              .filter(file => file.status !== 'removed')
+              .map(f => f.filename)
+              .join(', ');
+
             console.log("Changed files:", fileNames);
-            core.setOutput("files", fileNames.join(", "));
+            core.setOutput("files", fileNames);
 
       - name: Get files changed
         if: steps.check_label.outputs.table-approve == 'true'
