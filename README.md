@@ -1,1 +1,1 @@
-# github-action-playground
+# GitHub Action Playground
