@@ -32,7 +32,7 @@ jobs:
             if (prs.data.length === 0) {
               core.setFailed("No pull request found for this commit.");
             } else {
-              const pr = prs.data[0];
+              const pr = prs.data.at(-1);
               console.log(pr);
               console.log(prs);
               core.setOutput("pr_number", pr.number);
